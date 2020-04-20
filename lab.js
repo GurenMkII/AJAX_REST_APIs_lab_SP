@@ -148,6 +148,7 @@
 // })
 
 
+//END OF EXERCISE ! |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 
 
 
@@ -160,27 +161,64 @@
 
 
 
+// function testNum(num){
+//     p = new Promise((resolve, reject) => {
+//         if (num > 50 || num < 50){
+//             resolve(num + ' is less than or greater than 50');
+//         } else {
+//             reject(num + ' is equal to 50! ERROR.');
+//         }
+//     })
+//     return p;
+// }
+// testNum(11)
+//     .then(function(result){
+//         console.log(result);
+//     })
+//     .catch(function(error){
+//         console.log(error);
+//     })
 
 
 
 
+//END OF EXERCISE 2 |||||||||||||||||||||||||||||||||||||||
 
 
 
-function testNum(num){
-    p = new Promise((resolve, reject) => {
-        if (num > 50 || num < 50){
-            resolve(num + ' is less than or greater than 50');
+
+var arr = ['zebra','middle','clown','queen','ford','apple'];
+
+function makeAllCaps(arr){
+    return new Promise(function(resolve,reject){
+        let capsArr = arr.map(function(word){
+            if(typeof word === 'string'){
+                return word.toUpperCase();
+            } else {
+                reject('NOT ALL ITEMS IN THE ARRAY ARE STRINGS!!!');
+            }
+        })
+        resolve(capsArr);
+    })
+}
+function sortWords(arr){
+    return new Promise(function(resolve,reject){
+        if(arr){
+            arr.forEach(element => {
+                if(typeof element !== 'string'){
+                    reject('NOT ALL ITEMS IN THE ARRAY ARE STRINGS!!!')
+                }
+            });
+            resolve(arr.sort());
         } else {
-            reject(num + ' is equal to 50! ERROR.');
+            reject('SORTING UNSUCCESSFUL!!!');
         }
     })
-    return p;
 }
-testNum(11)
+
+makeAllCaps(arr)
+    .then(sortWords)
     .then(function(result){
         console.log(result);
     })
-    .catch(function(error){
-        console.log(error);
-    })
+    .catch(error => console.log(error));
